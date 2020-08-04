@@ -322,6 +322,16 @@ docker pull egaillardon/jmeter
 docker run -e DISPLAY=host.docker.internal:0 --interactive --tty --rm egaillardon/jmeter jmeter.sh
 ```
 
+##### Run Interactive UI on Linux:
+```bash 
+# allow access from localhost
+xhost + 127.0.0.1
+docker pull egaillardon/jmeter
+
+# Use --net="host" in your docker run command, then localhost in your docker container will point to your docker host.
+docker run --net=host --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY egaillardon/jmeter jmeter.sh
+```
+
 ## Changelog
 
 * Apache JMeter 5.3
